@@ -1,8 +1,7 @@
 .wrapper {
   flex: 0 0 auto;
 }
-.openButton,
-.submitButton {
+.openButton {
   min-height: 44px;
   padding: 0 18px;
   border: 1px solid var(--green);
@@ -16,64 +15,13 @@
     background 150ms ease,
     border-color 150ms ease;
 }
-.openButton:hover,
-.submitButton:hover {
+.openButton:hover {
   border-color: var(--green-dark);
   background: var(--green-dark);
 }
 .openButton span {
   margin-right: 5px;
   font-size: 1.1rem;
-}
-.backdrop {
-  position: fixed;
-  z-index: 10;
-  inset: 0;
-  display: grid;
-  overflow-y: auto;
-  place-items: center;
-  padding: 24px 16px;
-  background: rgba(19, 33, 24, 0.52);
-  animation: fade-in 140ms ease-out both;
-}
-.dialog {
-  width: min(100%, 560px);
-  padding: 28px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.2);
-  animation: rise 180ms ease-out both;
-}
-.dialogHeader {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-.eyebrow {
-  margin: 0 0 5px;
-  color: var(--green);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.dialogHeader h2 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.9rem;
-  font-weight: 400;
-}
-.closeButton {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  background: #fff;
-  color: var(--muted);
-  font-size: 1.35rem;
-  cursor: pointer;
 }
 .form {
   display: grid;
@@ -131,36 +79,20 @@
   color: var(--ink);
   cursor: pointer;
 }
+.submitButton {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--green);
+  border-radius: 3px;
+  background: var(--green);
+  color: #fff;
+  cursor: pointer;
+}
+.submitButton:hover {
+  border-color: var(--green-dark);
+  background: var(--green-dark);
+}
 .submitButton:disabled {
   cursor: wait;
   opacity: 0.65;
-}
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .backdrop,
-  .dialog {
-    animation: none;
-  }
-}
-@media (max-width: 560px) {
-  .dialog {
-    padding: 22px 18px;
-  }
 }

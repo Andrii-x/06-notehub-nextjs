@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { NoteForm } from "@/components/NoteForm/NoteForm";
 import { NoteList } from "@/components/NoteList/NoteList";
+import { Pagination } from "@/components/Pagination/Pagination";
+import { SearchBox } from "@/components/SearchBox/SearchBox";
 import { deleteNote, fetchNotes } from "@/lib/api";
 import { noteKeys } from "@/lib/queryKeys";
 import styles from "./notes.module.css";
@@ -39,22 +41,7 @@ export default function NotesClient() {
           </div>
           <NoteForm />
         </div>
-        <label className={styles.searchLabel} htmlFor="note-search">
-          Search your notes
-        </label>
-        <div className={styles.searchWrap}>
-          <span className={styles.searchIcon} aria-hidden="true">
-            ⌕
-          </span>
-          <input
-            className={styles.search}
-            id="note-search"
-            type="search"
-            placeholder="Try a title, tag, or keyword..."
-            value={search}
-            onChange={(event) => handleSearchChange(event.target.value)}
-          />
-        </div>
+        <SearchBox value={search} onChange={handleSearchChange} />
         {deleteMutation.isError && (
           <p className={styles.error} role="alert">
             Could not delete this note. {deleteMutation.error.message}
@@ -75,29 +62,11 @@ export default function NotesClient() {
               onDelete={(id) => deleteMutation.mutate(id)}
               deleting={deleteMutation.isPending}
             />
-            {notesQuery.data.totalPages > 1 && (
-              <nav className={styles.pagination} aria-label="Notes pages">
-                <button
-                  type="button"
-                  className={styles.pageButton}
-                  disabled={page <= 1}
-                  onClick={() => setPage((value) => value - 1)}
-                >
-                  Previous
-                </button>
-                <span>
-                  {page} / {notesQuery.data.totalPages}
-                </span>
-                <button
-                  type="button"
-                  className={styles.pageButton}
-                  disabled={page >= notesQuery.data.totalPages}
-                  onClick={() => setPage((value) => value + 1)}
-                >
-                  Next
-                </button>
-              </nav>
-            )}
+            <Pagination
+              currentPage={page}
+              totalPages={notesQuery.data.totalPages}
+              onPageChange={setPage}
+            />
           </>
         )}
       </section>
