@@ -15,12 +15,13 @@ const noteSchema: yup.ObjectSchema<CreateNotePayload> = yup.object({
     .string()
     .trim()
     .required("Title is required")
-    .max(120, "Title must be 120 characters or fewer"),
+    .min(3, "Title must be at least 3 characters")
+    .max(50, "Title must be 50 characters or fewer"),
   content: yup
     .string()
     .trim()
-    .required("Note content is required")
-    .max(5000, "Note must be 5000 characters or fewer"),
+    .max(500, "Note must be 500 characters or fewer")
+    .optional(),
   tag: yup
     .mixed<NoteTag>()
     .oneOf(tags, "Choose a valid tag")

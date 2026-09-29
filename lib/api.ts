@@ -40,6 +40,9 @@ export async function createNote(note: CreateNotePayload): Promise<Note> {
   return data;
 }
 
-export async function deleteNote(id: string): Promise<void> {
-  await notesApi.delete(`/notes/${encodeURIComponent(id)}`);
+export async function deleteNote(id: string): Promise<Note> {
+  const { data } = await notesApi.delete<Note>(
+    `/notes/${encodeURIComponent(id)}`,
+  );
+  return data;
 }
