@@ -12,7 +12,3 @@ export interface CreateNotePayload {
   content: string;
   tag: NoteTag;
 }
-export interface NotesPage {
-  notes: Note[];
-  totalPages: number;
-}

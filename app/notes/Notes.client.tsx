@@ -1,26 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useDebounce } from "@/hooks/useDebounce";
+import { Modal } from "@/components/Modal/Modal";
 import { NoteForm } from "@/components/NoteForm/NoteForm";
 import { NoteList } from "@/components/NoteList/NoteList";
 import { Pagination } from "@/components/Pagination/Pagination";
 import { SearchBox } from "@/components/SearchBox/SearchBox";
-import { deleteNote, fetchNotes } from "@/lib/api";
+import { fetchNotes } from "@/lib/api";
 import { noteKeys } from "@/lib/queryKeys";
 import styles from "./notes.module.css";
 
 export default function NotesClient() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const queryClient = useQueryClient();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const debouncedSearch = useDebounce(search);
   const notesQuery = useQuery({
-    queryKey: noteKeys.list(search, page),
-    queryFn: () => fetchNotes({ search, page }),
-  });
-  const deleteMutation = useMutation({
-    mutationFn: deleteNote,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: noteKeys.all }),
+    queryKey: noteKeys.list(debouncedSearch, page),
+    queryFn: () => fetchNotes({ search: debouncedSearch, page }),
+    placeholderData: keepPreviousData,
+    refetchOnMount: false,
   });
   function handleSearchChange(value: string) {
     setSearch(value);
@@ -39,14 +40,23 @@ export default function NotesClient() {
               </span>
             </h1>
           </div>
-          <NoteForm />
+          <button
+            className={styles.newNoteButton}
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <span aria-hidden="true">＋</span> New note
+          </button>
         </div>
+        <Modal
+          open={isModalOpen}
+          title="New note"
+          eyebrow="Make a little room"
+          onClose={() => setIsModalOpen(false)}
+        >
+          <NoteForm onClose={() => setIsModalOpen(false)} />
+        </Modal>
         <SearchBox value={search} onChange={handleSearchChange} />
-        {deleteMutation.isError && (
-          <p className={styles.error} role="alert">
-            Could not delete this note. {deleteMutation.error.message}
-          </p>
-        )}
         {notesQuery.isLoading && (
           <p className={styles.status}>Loading, please wait...</p>
         )}
@@ -57,11 +67,7 @@ export default function NotesClient() {
         )}
         {notesQuery.data && (
           <>
-            <NoteList
-              notes={notesQuery.data.notes}
-              onDelete={(id) => deleteMutation.mutate(id)}
-              deleting={deleteMutation.isPending}
-            />
+            <NoteList notes={notesQuery.data.notes} />
             <Pagination
               currentPage={page}
               totalPages={notesQuery.data.totalPages}

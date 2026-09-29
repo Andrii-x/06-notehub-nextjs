@@ -37,6 +37,25 @@
   font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
   font-size: 0.9rem;
 }
+.newNoteButton {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--green);
+  border-radius: 3px;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.newNoteButton:hover {
+  border-color: var(--green-dark);
+  background: var(--green-dark);
+}
+.newNoteButton span {
+  margin-right: 5px;
+  font-size: 1.1rem;
+}
 .status,
 .error {
   margin: 24px 0;

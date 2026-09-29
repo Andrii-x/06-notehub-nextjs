@@ -101,6 +101,10 @@
   cursor: wait;
   opacity: 0.55;
 }
+.error {
+  margin: 24px 0 0;
+  color: var(--danger);
+}
 .empty {
   display: grid;
   min-height: 240px;

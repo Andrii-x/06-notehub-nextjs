@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "format": "prettier --write \"app/**/*.{ts,tsx,css}\" \"components/**/*.{ts,tsx,css}\" \"lib/**/*.{ts,tsx}\" \"types/**/*.ts\" \"README.md\" \"package.json\"",
-    "format:check": "prettier --check \"app/**/*.{ts,tsx,css}\" \"components/**/*.{ts,tsx,css}\" \"lib/**/*.{ts,tsx}\" \"types/**/*.ts\" \"README.md\" \"package.json\""
+    "format": "prettier --write \"app/**/*.{ts,tsx,css}\" \"components/**/*.{ts,tsx,css}\" \"lib/**/*.{ts,tsx}\" \"hooks/**/*.ts\" \"types/**/*.ts\" \"README.md\" \"package.json\"",
+    "format:check": "prettier --check \"app/**/*.{ts,tsx,css}\" \"components/**/*.{ts,tsx,css}\" \"lib/**/*.{ts,tsx}\" \"hooks/**/*.ts\" \"types/**/*.ts\" \"README.md\" \"package.json\""
   },
   "dependencies": {
     "@tanstack/react-query": "^5.104.0",

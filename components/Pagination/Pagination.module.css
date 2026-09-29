@@ -2,23 +2,46 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 6px;
   margin-top: 28px;
+  padding: 0;
   color: var(--muted);
   font-size: 0.9rem;
+  list-style: none;
 }
 
-.button {
+.page,
+.previous,
+.next,
+.break {
+  min-width: 38px;
   min-height: 38px;
-  padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--surface);
-  color: var(--ink);
-  cursor: pointer;
+  list-style: none;
 }
 
-.button:disabled {
+.link {
+  display: grid;
+  min-height: 36px;
+  place-items: center;
+  padding: 0 10px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.active {
+  border-color: var(--green);
+  background: var(--green);
+  color: #fff;
+}
+
+.active .link {
+  color: inherit;
+}
+
+.disabled {
   cursor: not-allowed;
   opacity: 0.45;
 }

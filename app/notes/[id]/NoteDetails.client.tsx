@@ -16,6 +16,7 @@ export default function NoteDetailsClient() {
   } = useQuery({
     queryKey: noteKeys.detail(id),
     queryFn: () => fetchNoteById(id),
+    refetchOnMount: false,
   });
   if (isLoading)
     return <p className={styles.message}>Loading, please wait...</p>;

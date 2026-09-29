@@ -8,7 +8,7 @@ interface SearchBoxProps {
   id?: string;
   label?: string;
   placeholder?: string;
-};
+}
 
 export function SearchBox({
   value,

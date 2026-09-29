@@ -1,28 +1,3 @@
-.wrapper {
-  flex: 0 0 auto;
-}
-.openButton {
-  min-height: 44px;
-  padding: 0 18px;
-  border: 1px solid var(--green);
-  border-radius: 3px;
-  background: var(--green);
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 650;
-  cursor: pointer;
-  transition:
-    background 150ms ease,
-    border-color 150ms ease;
-}
-.openButton:hover {
-  border-color: var(--green-dark);
-  background: var(--green-dark);
-}
-.openButton span {
-  margin-right: 5px;
-  font-size: 1.1rem;
-}
 .form {
   display: grid;
   gap: 9px;
@@ -63,6 +38,11 @@
   color: var(--danger);
   font-size: 0.85rem;
   line-height: 1.5;
+}
+.fieldError {
+  margin: -4px 0 2px;
+  color: var(--danger);
+  font-size: 0.82rem;
 }
 .actions {
   display: flex;
