@@ -1,0 +1,58 @@
+:root {
+  color-scheme: light;
+  --ink: #17251d;
+  --muted: #66746a;
+  --paper: #f4f7f2;
+  --surface: #fff;
+  --line: #dce5dc;
+  --green: #176b47;
+  --green-dark: #105337;
+  --green-soft: #e5f1e9;
+  --danger: #b4433b;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  min-height: 100%;
+  background: var(--paper);
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper) radial-gradient(#d7e3d7 0.7px, transparent 0.7px);
+  background-size: 18px 18px;
+  font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: inherit;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #e0a34b;
+  outline-offset: 3px;
+}
+::selection {
+  color: #fff;
+  background: var(--green);
+}
