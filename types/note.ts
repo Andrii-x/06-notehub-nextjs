@@ -3,9 +3,9 @@ export interface Note {
   id: string;
   title: string;
   content: string;
-  tag: string;
+  tag: NoteTag;
   createdAt: string;
-  updatedAt?: string;
+  updatedAt: string;
 }
 export interface CreateNotePayload {
   title: string;
